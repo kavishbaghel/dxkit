@@ -1,7 +1,7 @@
 .PHONY: build clean test lint
 
 build:
-	go build -o dxkit main.go
+	go build -o dist/ main.go
 
 clean:
 	rm -f dxkit
