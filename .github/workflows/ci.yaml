@@ -1,5 +1,5 @@
-name: dxkit-cicd
-run-name: dxkit CI/CD
+name: dxkit-tools
+run-name: Build dxkit tools
 on:
   push:
     branches:
