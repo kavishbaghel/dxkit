@@ -6,24 +6,20 @@ import (
 	"strings"
 )
 
-func GetShell(shellType string) (string, error) {
+func DetectShell() (string, error) {
 
 	/* Check if shellType is provided as an argument. If it is provided, use it.
 	Otherwise, try to detect the shell from the environment. */
-	if shellType == "" {
-		shell := os.Getenv("SHELL")
-		if shell == "" {
-			return "", fmt.Errorf("shell not found")
-		}
-		if strings.Contains(shell, "bash") {
-			shellType = "bash"
-		} else if strings.Contains(shell, "zsh") {
-			shellType = "zsh"
-		} else {
-			return "", fmt.Errorf("unsupported shell: %s", shell)
-		}
+
+	shell := os.Getenv("SHELL")
+	if shell == "" {
+		return "", fmt.Errorf("Unable to detect shell. Please provide the shell type as an argument (bash or zsh).")
 	}
-
-	return shellType, nil
-
+	if strings.Contains(shell, "bash") {
+		return "bash", nil
+	} else if strings.Contains(shell, "zsh") {
+		return "zsh", nil
+	} else {
+		return "", fmt.Errorf("unsupported shell: %s", shell)
+	}
 }
