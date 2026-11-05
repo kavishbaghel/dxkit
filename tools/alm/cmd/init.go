@@ -17,7 +17,13 @@ var initCmd = &cobra.Command{
 	Long: `Initialize and setup the necessary configurations for your shell environment.
 	You can provide the shell type as an argument (bash or zsh). If no argument is provided, the tool will attempt to detect your shell automatically.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		shell, err := helpers.GetShell()
+
+		var shellType string
+		if len(args) > 0 {
+			shellType = args[0]
+		}
+
+		shell, err := helpers.GetShell(shellType)
 		if err != nil {
 			fmt.Println("Error:", err)
 			return
