@@ -6,26 +6,27 @@ package cmd
 import (
 	"fmt"
 
-	helpers "github.com/kavishbaghel/dxkit/internal/helpers"
+	shell "github.com/kavishbaghel/dxkit/internal/helpers/shell"
 	"github.com/spf13/cobra"
 )
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{
-	Use:   "init",
-	Short: "Initialize and setup the necessary configurations for your shell environment.",
+	Use:     "init [shellType]",
+	Short:   "Initialize and setup the necessary configurations for your shell environment.",
+	Example: "alm init\n alm init zsh\n alm init bash",
 	Long: `Initialize and setup the necessary configurations for your shell environment.
 	You can provide the shell type as an argument (bash or zsh). If no argument is provided, the tool will attempt to detect your shell automatically.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		fmt.Print("alm: Initializing setup for your shell environment...\n")
 
-		var shell string
+		var shellType string
 		if len(args) > 0 {
-			shell = args[0]
-			fmt.Println("alm: Using provided shell type -", shell)
+			shellType = args[0]
+			fmt.Println("alm: Using provided shell type -", shellType)
 		} else {
-			shell, err := helpers.DetectShell()
+			shell, err := shell.DetectShell()
 			if err != nil {
 				fmt.Println("Error:", err)
 				return
