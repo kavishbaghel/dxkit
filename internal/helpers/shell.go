@@ -1,10 +1,14 @@
 package helpers
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
-func ShellError(err error, msg string) error {
-	if err != nil {
-		return fmt.Errorf("%s: %w", msg, err)
+func GetShell() (string, error) {
+	shell := os.Getenv("SHELL")
+	if shell == "" {
+		return "", fmt.Errorf("shell not found")
 	}
-	return nil
+	return shell, nil
 }
