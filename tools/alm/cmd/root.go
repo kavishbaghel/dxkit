@@ -15,7 +15,12 @@ var rootCmd = &cobra.Command{
 	Short: "A lightweight CLI tool for managing your alias, functions, and more to help you work faster in the terminal.",
 	Long: `A lightweight CLI tool for managing your alias, functions, and more to help you work faster in the terminal.
 
-alm lets you manage your aliases and functions in simple and easily configurable manner.`,
+alm lets you manage your aliases and functions in simple and easily configurable manner. The tool currently 
+supports bash and zsh. Please feel free to contribute to the project and add support for other shells - 
+https://github.com/kavishbaghel/dxkit/tools/alm`,
+	CompletionOptions: cobra.CompletionOptions{
+		DisableDefaultCmd: true,
+	},
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
@@ -39,5 +44,5 @@ func init() {
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
 }

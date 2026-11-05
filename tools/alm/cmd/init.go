@@ -13,8 +13,9 @@ import (
 // initCmd represents the init command
 var initCmd = &cobra.Command{
 	Use:   "init",
-	Short: "Initialize and setup the necessary configurations for the tool.",
-	Long:  `Initialize and setup the necessary configurations for the tool.`,
+	Short: "Initialize and setup the necessary configurations for your shell environment.",
+	Long: `Initialize and setup the necessary configurations for your shell environment.
+	You can provide the shell type as an argument (bash or zsh). If no argument is provided, the tool will attempt to detect your shell automatically.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		shell, err := helpers.GetShell()
 		if err != nil {
